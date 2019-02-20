@@ -12,7 +12,15 @@ let io = socketIO(server);
 io.on('connection', (socket) => {
   console.log('new Client connected');
 
-  
+  socket.emit('newMessage', {
+    from: 'server is emmiting and client is listening',
+    time: new Date(),
+  })
+
+  socket.on('createMessage', (message) => {
+    console.log('create meaasage', message)
+  })
+
   socket.on('disconnect', () => {
     console.log('Disconnected from client')
   })
@@ -20,12 +28,7 @@ io.on('connection', (socket) => {
 
 
 app.use(express.static(publicPath))
-// app.get('/', function(req,res){
-//   res.status(200).send({
-//     status: 'connection successful',
-//     message: 'Friend\'s room',
-//   })
-// })
+
 server.listen(port, function(){
   console.log(`app listening at ${port}`)
 })
