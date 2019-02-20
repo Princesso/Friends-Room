@@ -12,13 +12,13 @@ let io = socketIO(server);
 io.on('connection', (socket) => {
   console.log('new Client connected');
 
-  socket.emit('newMessage', {
-    from: 'server is emmiting and client is listening',
-    time: new Date(),
-  })
-
   socket.on('createMessage', (message) => {
     console.log('create meaasage', message)
+    io.emit('newMessage', {
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    })
   })
 
   socket.on('disconnect', () => {

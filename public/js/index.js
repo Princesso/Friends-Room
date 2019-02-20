@@ -4,7 +4,7 @@ socket.on('connect', () => {
   console.log('connected to server');
 
   socket.emit('createMessage', {
-    from:'client is emmiting and client is listening',
+    from:'client is emmiting and server is listening',
     text: 'that\'s from me',
     createdAt: new Date(),
   });
