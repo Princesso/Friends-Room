@@ -14,7 +14,7 @@ io.on('connection', (socket) => {
 
   
   socket.on('disconnect', () => {
-    console.log('Disconnected from cllient')
+    console.log('Disconnected from client')
   })
 })
 
